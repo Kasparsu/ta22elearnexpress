@@ -5,14 +5,15 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "dev": "nodemon"
+    "dev": "nodemon -e js,json,njk"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.20.2",
-    "express": "^4.19.2"
+    "express": "^4.19.2",
+    "nunjucks": "^3.2.4"
   },
   "devDependencies": {
     "nodemon": "^3.1.0"
