@@ -10,7 +10,7 @@ const __dirname = dirname(__filename);
 const db = {};
 const sequelize = new Sequelize(database.development);
 
-export default (async () => {
+export default await (async () => {
   const files = readdirSync(__dirname)
     .filter(
       (file) => file.indexOf('.') !== 0
@@ -21,7 +21,9 @@ export default (async () => {
   for await (const file of files) {
     const model = await import(`./${file}`);
     const namedModel = model.default(sequelize, DataTypes);
+    
     db[namedModel.name] = namedModel;
+    
   }
 
   Object.keys(db).forEach((modelName) => {

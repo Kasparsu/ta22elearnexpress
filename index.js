@@ -1,7 +1,7 @@
 import express from 'express';
 import nunjucks from 'nunjucks';
 import bodyParser from 'body-parser';
-import { Sequelize, QueryTypes } from 'sequelize';
+import db from './models/index.js';
 const app = express();
 const port = 3000;
 const __dirname = import.meta.dirname;
@@ -15,13 +15,7 @@ nunjucks.configure('views', {
 
 // req => request , res => response
 app.get('/',async (req, res) => {
-    const sequelize = new Sequelize({
-        dialect: 'sqlite',
-        storage: 'db.sqlite'
-    });
-    const posts = await sequelize.query('SELECT * FROM `posts`', {
-        type: QueryTypes.SELECT,
-    });
+    let posts = await db.Post.findAll();
     console.log(posts);
     console.log(req.query);
     res.render('index.njk');
