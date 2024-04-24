@@ -1,20 +1,19 @@
 {% extends "partials/layout.njk" %}
 {% block title %}Home{% endblock %}
 {% block content %}
-    <h1>Hello TA22E!!!!</h1>
-    <a href="/answer?page=3&order=asc">page</a>
-    <form action="/answer?page=3&order=asc" method="POST">
-        <input type="text" placeholder="Name" name="name">
-        <input type="number" placeholder="Age" name="age">
-        <input type="submit">
-    </form>
-    <ul>
-        {% for i in range(0,10) %}
-            {% if i%2 %}
-                <li>{{ i }}</li>
-            {% else %}
-                <li style="background-color: gray;">{{i}}</li>
-            {% endif %}
+    {% include "partials/pagination.njk" %}
+    <div class="row mb-2">
+        {% for post in posts %}
+            <div class="col-3 mt-2">
+                <div class="card h-100">
+                    {# <img src="..." class="card-img-top" alt="..."> #}
+                    <div class="card-body">
+                        <h5 class="card-title">{{post.title}}</h5>
+                        <p class="card-text">{{post.snippet()}}...</p>
+                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                    </div>
+                </div>
+            </div>
         {% endfor %}
-    </ul>
+    </div>
 {% endblock %}
