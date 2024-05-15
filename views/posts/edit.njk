@@ -1,0 +1,24 @@
+{% extends "partials/layout.njk" %}
+{% block title %}Posts{% endblock %}
+{% block content %}
+    <form action="/posts/edit/{{post.id}}" method="POST">
+        <div class="mb-3">
+            <label for="title" class="form-label">Title</label>
+            <input type="text"
+                class="form-control"
+                id="title"
+                placeholder="Title"
+                name="title"
+                value="{{post.title}}">
+        </div>
+        <div class="mb-3">
+            <label for="body" class="form-label">Content</label>
+            <textarea class="form-control"
+                id="body"
+                rows="3"
+                name="body">{{post.body}}</textarea>
+        </div>
+        <input type="submit" class="btn btn-primary" value="Edit">
+    </form>
+
+{% endblock %}

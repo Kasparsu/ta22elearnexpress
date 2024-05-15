@@ -29,6 +29,8 @@ app.post('/answer', (req, res) => {
     console.log(req.body);
     res.render('answer.njk', { ...req.body, ...req.query });
 });
+import postsController from './controllers/postsController.js';
+app.use('/posts', postsController);
 
 app.listen(port, () => {
     console.log(`Example app listening on port http://localhost:${port}`);
